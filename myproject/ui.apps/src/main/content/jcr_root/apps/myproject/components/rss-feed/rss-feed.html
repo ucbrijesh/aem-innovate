@@ -1,0 +1,44 @@
+<div data-sly-test="${(wcmmode.edit || wcmmode.design)}" class="cq-placeholder"
+     data-emptytext="Edit ${component.title} component">
+</div>
+<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"></sly>
+<sly data-sly-call="${clientLib.css @ categories='myproject.rss-feed'}"></sly>
+
+<sly data-sly-test.select="${properties.listFrom =='dynamic'}">
+	<sly data-sly-use.rssfeedObject="com.adobe.aem.guides.myproject.core.models.RSSFeedListModel"></sly>
+    <sly  data-sly-test.dynlist="${rssfeedObject.listOfRssFeeds.size > 0}">
+        <div data-sly-list.rssfeedItems="${rssfeedObject.listOfRssFeeds}"  class="rss-container"> 
+        	<div class="rss-column" >
+        		<div class="rss-feed">
+	                <div class="feed-title"><a href="${rssfeedItems.link @ context='unsafe'}" target="_blank">${rssfeedItems.title @ context='unsafe'}</a></div>
+					<div class="feed-date">${rssfeedItems.publishDate @ context='unsafe'}</div>
+                    <hr>
+                    <div class="feed-description">${rssfeedItems.description @ context='unsafe'}</div>
+
+	            </div>
+        	</div>
+         </div>            
+    </sly>
+    <sly data-sly-test="${!dynlist}">
+         	<p>The RSS URL feed is incorrect or empty! Select option to enter a fixed RSS List from the dialog dropdown!</p>
+         </sly>
+
+</sly>
+
+<sly data-sly-test.select="${properties.listFrom =='fixed'}">
+	<div data-sly-list.feeds="${resource.getChildren}">
+		<div data-sly-list.item="${feeds.getChildren}" class="rss-container" >
+			<div class="rss-column" >
+				<div class="rss-feed">
+	                <div class="feed-title"><a href="${item.link}" target="_blank">${item.title}</a></div>
+                    <div class="feed-date"> ${'d MMM yyyy, HH:mm' @ format=item.publishDate}</div>
+                    <hr>
+	                <div class="feed-description">${item.description}</div>
+	            </div>
+			</div>
+         </div>   
+    </div>
+</sly>
+
+
+

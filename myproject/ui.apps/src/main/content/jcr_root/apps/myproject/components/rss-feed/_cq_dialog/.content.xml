@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="RSS Feed"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    helpPath="#">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <listSettings
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="RSS Feed Settings"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <listFrom
+                                        granite:class="cq-dialog-dropdown-showhide"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldLabel="Build list using"
+                                        name="./listFrom">
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            cq-dialog-dropdown-showhide-target=".list-option-listfrom-showhide-target"/>
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <dynamic
+                                                granite:hide="${cqDesign.disableChildren}"
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Dynamic RSS Feed"
+                                                value="dynamic"/>
+                                            <fixed
+                                                granite:hide="${cqDesign.disableStatic}"
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Fixed RSS Feed"
+                                                value="fixed"/>
+                                        </items>
+                                    </listFrom>
+                                    <setDynamic
+                                        granite:class="hide list-option-listfrom-showhide-target foundation-layout-util-vmargin"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            showhidetargetvalue="dynamic"/>
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <heading
+                                                granite:class="coral-Heading coral-Heading--4"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                                level="{Long}4"
+                                                text="Options for Dynamic RSS Feed"/>
+                                            <well
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <endpointurl
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="End Point URL"
+                                                        fieldLabel="End point url"
+                                                        name="./endpointurl"
+                                                        required="{Boolean}true"/>
+                                                    <numberOfFeeds
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="/libs/granite/ui/components/coral/foundation/form/numberfield"
+                                                        fieldDescription="Number of Entries from RSS"
+                                                        fieldLabel="Number of Entries from RSS Feed"
+                                                        name="./numberOfFeeds"/>
+                                                </items>
+                                            </well>
+                                        </items>
+                                    </setDynamic>
+                                    <setFixed
+                                        granite:class="hide list-option-listfrom-showhide-target foundation-layout-util-vmargin"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            showhidetargetvalue="fixed"/>
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <heading
+                                                granite:class="coral-Heading coral-Heading--4"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                                level="{Long}4"
+                                                text="Options for Fixed RSS Feed"/>
+                                            <well
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <feeds
+								                        jcr:primaryType="nt:unstructured"
+								                        jcr:title="RSS Feeds"
+								                        sling:resourceType="granite/ui/components/coral/foundation/container"
+								                        margin="{Boolean}true">
+								                        <items jcr:primaryType="nt:unstructured">
+								                            <columns
+								                                jcr:primaryType="nt:unstructured"
+								                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+								                                <items jcr:primaryType="nt:unstructured">
+								                                    <column
+								                                        jcr:primaryType="nt:unstructured"
+								                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+								                                        <items jcr:primaryType="nt:unstructured">
+								                                            <listitems
+								                                                jcr:primaryType="nt:unstructured"
+								                                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+								                                                class="full-width"
+								                                                composite="{Boolean}true"
+								                                                fieldDescription="Click 'Add field' to add a new User Submenu title and links"
+								                                                fieldLabel="">
+								                                                <field
+								                                                    jcr:primaryType="nt:unstructured"
+								                                                    sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
+								                                                    acs-commons-nested=""
+								                                                    name="./feeds">
+								                                                    <layout
+								                                                        jcr:primaryType="nt:unstructured"
+								                                                        sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+								                                                        method="absolute"/>
+								                                                    <items jcr:primaryType="nt:unstructured">
+								                                                        <column
+								                                                            jcr:primaryType="nt:unstructured"
+								                                                            sling:resourceType="granite/ui/components/foundation/container">
+								                                                            <items jcr:primaryType="nt:unstructured">
+								                                                            <title
+								                                                                jcr:primaryType="nt:unstructured"
+								                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+								                                                                fieldDescription="Enter Feed title"
+								                                                                fieldLabel="RSS Feed Title"
+								                                                                name="./title"/>
+								                                                            <description
+								                                                                jcr:primaryType="nt:unstructured"
+								                                                                sling:resourceType="granite/ui/components/foundation/form/textarea"
+								                                                                fieldDescription="Enter Feed Description"
+								                                                                fieldLabel="RSS Feed Description"
+								                                                                name="./description"/>
+								                                                            <link
+								                                                                jcr:primaryType="nt:unstructured"
+								                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+								                                                                fieldDescription="Enter Feed Link"
+								                                                                fieldLabel="RSS Feed Link"
+								                                                                name="./link"/>    
+								                                                            <publishDate
+								                                                                jcr:primaryType="nt:unstructured"
+								                                                                sling:resourceType="granite/ui/components/foundation/form/datepicker"
+								                                                                fieldDescription="Enter Feed Publish Date"
+								                                                                fieldLabel="RSS Feed Date"
+								                                                                name="./publishDate"/>
+								                                                            </items>
+								                                                        </column>
+								                                                    </items>
+								                                                </field>
+								                                            </listitems>                                        
+								                                        </items>
+								                                    </column>
+								                                </items>
+								                            </columns>
+								                        </items>
+								                    </feeds>
+                                                </items>
+                                            </well>
+                                        </items>
+                                    </setFixed>
+                                </items>
+                            </column>
+                        </items>
+                    </listSettings>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>
