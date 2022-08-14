@@ -55,7 +55,7 @@ public class RSSFeedListModel {
 	@Optional
 	public String numberOfFeeds;
 
-	/* Fetch RSS Feed from URL endpoint */
+	/* Fetch RSS Feeds based on limit provided in Component Dialog */
 	@PostConstruct
 	public List<RSSFeedModel> getRssFeedItems() throws IOException {
 		listOfRssFeeds = getAllFeeds();
@@ -73,8 +73,7 @@ public class RSSFeedListModel {
 		return listOfRssFeeds;
 	}
 	
-	
-
+	/* Get All Feeds from URL endpoint  */
 	private List<RSSFeedModel> getAllFeeds() {
 		try {
 			String description = "";
@@ -127,6 +126,7 @@ public class RSSFeedListModel {
 						}
 					}
 				}
+				//Sorts list based on last updated date and most recent 
 				if(listOfRssFeeds != null && listOfRssFeeds.size()>1) {
 					Collections.sort(listOfRssFeeds, new Comparator<RSSFeedModel>() {
 					    @Override
@@ -145,7 +145,7 @@ public class RSSFeedListModel {
 	}
 
 
-
+	/* Retrieve LocalDateTIme object for sorting  */
 	private LocalDateTime getDate(String publishDate) {
 		LocalDateTime date = LocalDateTime.parse(publishDate, DateTimeFormatter.ISO_DATE_TIME);
 		return date;
@@ -163,7 +163,7 @@ public class RSSFeedListModel {
 		return formattedDate;
 	}
 
-
+	/* Get individual feed details from XML - title, description, link etc */
 	private String getCharacterData(XMLEvent event, XMLEventReader eventReader)
 			throws XMLStreamException {
 		String result = "";
@@ -176,9 +176,4 @@ public class RSSFeedListModel {
 		return result;
 	}
 
-
 }
-
-
-
-

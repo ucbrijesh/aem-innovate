@@ -4,6 +4,7 @@
 <sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"></sly>
 <sly data-sly-call="${clientLib.css @ categories='myproject.rss-feed'}"></sly>
 
+<!-- /* Dropdown selection is a dynamic list from URL endpoint*/ -->
 <sly data-sly-test.select="${properties.listFrom =='dynamic'}">
 	<sly data-sly-use.rssfeedObject="com.adobe.aem.guides.myproject.core.models.RSSFeedListModel"></sly>
     <sly  data-sly-test.dynlist="${rssfeedObject.listOfRssFeeds.size > 0}">
@@ -25,6 +26,7 @@
 
 </sly>
 
+<!-- /* Dropdown selection is a fixed list */ -->
 <sly data-sly-test.select="${properties.listFrom =='fixed'}">
 	<div data-sly-list.feeds="${resource.getChildren}">
 		<div data-sly-list.item="${feeds.getChildren}" class="rss-container" >
@@ -39,6 +41,3 @@
          </div>   
     </div>
 </sly>
-
-
-
