@@ -1,0 +1,32 @@
+{
+  "rss_feed": {
+    "numberOfFeeds": "4",
+    "endpointurl": "https://sports.ndtv.com/rss/cricket",
+    "sling:resourceType": "myproject/components/rss-feed",
+    "listFrom": "dynamic",
+    "feeds": {
+      "jcr:primaryType": "nt:unstructured",
+      "item0": {
+        "jcr:primaryType": "nt:unstructured",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+        "publishDate": "Mon Aug 15 2022 10:00:00 GMT+0530",
+        "link": "https://www.google.com",
+        "title": "News Article 1"
+      },
+      "item1": {
+        "jcr:primaryType": "nt:unstructured",
+        "description": "Pretium aenean pharetra magna ac. Varius quam quisque id diam vel. Molestie at elementum eu facilisis. Nullam non nisi est sit. Amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. Ut enim blandit volutpat maecenas volutpat. Et sollicitudin ac orci phasellus egestas. Praesent elementum facilisis leo vel. Aliquet bibendum enim facilisis gravida.",
+        "publishDate": "Sun Aug 14 2022 09:00:00 GMT+0530",
+        "link": "https://www.google.com",
+        "title": "News Article 2"
+      },
+      "item2": {
+        "jcr:primaryType": "nt:unstructured",
+        "description": "Scelerisque fermentum dui faucibus in. Dictum sit amet justo donec enim diam vulputate ut pharetra. Vitae suscipit tellus mauris a diam maecenas sed enim ut. Turpis massa sed elementum tempus egestas sed sed",
+        "publishDate": "Tue Aug 02 2022 07:00:00 GMT+0530",
+        "link": "https://www.google.com",
+        "title": "News Article 3"
+      }
+    }
+  }
+}

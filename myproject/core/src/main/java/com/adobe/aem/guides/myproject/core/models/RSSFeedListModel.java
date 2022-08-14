@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 @Model(adaptables = Resource.class)
 public class RSSFeedListModel {
 
+	/*XML Entries*/
 	static final String TITLE = "title"; /*RSS Feed Title */
 	static final String DESCRIPTION = "description"; /*RSS Feed Description */
 	static final String LINK = "link"; /*RSS Feed Link */
@@ -54,20 +55,27 @@ public class RSSFeedListModel {
 	@Inject
 	@Optional
 	public String numberOfFeeds;
+	
+	/*RSS Feed URL from Resource */
+	@Inject
+	@Optional
+	public String listFrom;
 
 	/* Fetch RSS Feeds based on limit provided in Component Dialog */
 	@PostConstruct
 	public List<RSSFeedModel> getRssFeedItems() throws IOException {
-		listOfRssFeeds = getAllFeeds();
-		if(StringUtils.isNotEmpty(numberOfFeeds)) {
-			List<RSSFeedModel> tempList = new ArrayList<>();
-			int count = Integer.parseInt(numberOfFeeds);
-			//Check if RSS Feeds are more than count provided in Component dialog
-			if(listOfRssFeeds.size() > count) {
-				for(int i=0;i<count;i++) {
-					tempList.add(listOfRssFeeds.get(i));
+		if(StringUtils.isNotEmpty(getListFrom()) && StringUtils.equalsIgnoreCase(getListFrom(), "dynamic") ) {
+			listOfRssFeeds = getAllFeeds();
+			if(StringUtils.isNotEmpty(getNumberOfFeeds())) {
+				List<RSSFeedModel> tempList = new ArrayList<>();
+				int count = Integer.parseInt(getNumberOfFeeds());
+				//Check if RSS Feeds are more than count provided in Component dialog
+				if(listOfRssFeeds.size() > count) {
+					for(int i=0;i<count;i++) {
+						tempList.add(listOfRssFeeds.get(i));
+					}
+					listOfRssFeeds = tempList;
 				}
-				listOfRssFeeds = tempList;
 			}
 		}
 		return listOfRssFeeds;
@@ -81,8 +89,8 @@ public class RSSFeedListModel {
 			String link = "";
 			String publishDate = "";
 			XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-			if(null != endpointurl) {
-				URL url = new URL(endpointurl);
+			if(null != getEndpointurl()) {
+				URL url = new URL(getEndpointurl());
 				HttpURLConnection connection = (HttpURLConnection)url.openConnection();//Http call to endpoint url
 				if(connection!=null ) {
 					connection.addRequestProperty("User-Agent", "Mozilla");
@@ -174,6 +182,19 @@ public class RSSFeedListModel {
 		}
 		LOG.info("Return string::"+ result);
 		return result;
+	}
+	
+	//Model getters
+	public String getEndpointurl() {
+		return endpointurl;
+	}
+
+	public String getNumberOfFeeds() {
+		return numberOfFeeds;
+	}
+
+	public String getListFrom() {
+		return listFrom;
 	}
 
 }
